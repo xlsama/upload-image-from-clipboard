@@ -13,8 +13,7 @@
     }
   },
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "bin": {
     "ui": "dist/index.mjs"
