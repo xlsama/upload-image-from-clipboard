@@ -7,7 +7,7 @@ import { SMMSUploadRequest, SMMSUploadResponse } from './types'
 // https://doc.sm.ms/#api-Image-Upload
 export function uploadToSMMS({
   path,
-  authorization
+  token
 }: SMMSUploadRequest): Promise<SMMSUploadResponse> {
   return new Promise(async resolve => {
     const form = new FormData()
@@ -15,15 +15,14 @@ export function uploadToSMMS({
 
     const res = await fetch('https://smms.app/api/v2/upload', {
       method: 'post',
-      headers: { Authorization: authorization },
+      headers: { Authorization: token },
       body: form
     })
 
     exec(`rm ${path}`)
 
-    if (res.ok) {
-      const data = await res.json()
-      resolve(data as SMMSUploadResponse)
-    }
+    const data = await res.json()
+
+    resolve(data as SMMSUploadResponse)
   })
 }

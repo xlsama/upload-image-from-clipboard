@@ -1,7 +1,7 @@
 {
   "name": "upload-image-form-clipboard",
   "version": "0.0.1",
-  "description": "Upload image from clipboard",
+  "description": "Upload image from clipboard to SM.MS.",
   "license": "MIT",
   "author": "xlsama",
   "main": "./dist/index.cjs",
@@ -31,6 +31,7 @@
     "clipboard"
   ],
   "dependencies": {
+    "commander": "^9.4.1",
     "form-data": "^4.0.0",
     "node-fetch": "^3.3.0"
   },

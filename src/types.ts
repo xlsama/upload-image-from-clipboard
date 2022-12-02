@@ -1,16 +1,11 @@
 export interface SMMSUploadRequest {
   path: string
-  authorization: string
-}
-
-export enum SMMSUploadResponseCode {
-  Success = 'success',
-  Repeated = 'image_repeated'
+  token: string
 }
 
 export interface SMMSUploadResponse {
   success: boolean
-  code: SMMSUploadResponseCode
+  code: string
   message: string
   data: {
     file_id: number

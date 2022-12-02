@@ -1,44 +1,40 @@
 #!/usr/bin/env node
 
+import { version } from '../package.json'
+import { program } from 'commander'
+import { uploadImage } from './upload'
+import { readFileSync, writeFileSync } from 'node:fs'
+import { homedir } from 'node:os'
 import path from 'node:path'
-import { exec } from 'node:child_process'
-import { uploadToSMMS } from './api'
-import { SMMSUploadResponseCode } from './types'
 
-function getClipboardImagePath(): Promise<string> {
-  return new Promise(resolve => {
-    const pngpasteCommand = path.resolve('lib/pngpaste')
-    const name = 'image.png'
+const TOKEN_PATH = path.resolve(homedir(), '.config', 'upload-image.json')
 
-    exec(`${pngpasteCommand} ${name}`, (...args) => {
-      const stderr = args.at(-1)
-      if (stderr) {
-        console.log(stderr)
-        return
-      }
+program.version(version)
 
-      resolve(path.resolve(name))
-    })
-  })
+program.option('-t, --token <token>', 'save token to local')
+
+program.parse()
+
+const { token } = program.opts()
+
+if (token) {
+  setTokenToLocal()
+} else {
+  const token = getTokenFromLocal()
+  token && uploadImage(token)
 }
 
-async function uploadImage() {
-  const path = await getClipboardImagePath()
-  const data = await uploadToSMMS({
-    path,
-    authorization: 'R3SB68a7pSGXdUVsuz9GIU2fMMXE1WNd'
-  })
+function setTokenToLocal() {
+  writeFileSync(TOKEN_PATH, JSON.stringify({ token }))
+}
 
-  switch (data.code) {
-    case SMMSUploadResponseCode.Success:
-      exec(`echo ${data.data.url} | pbcopy`)
-      break
-    case SMMSUploadResponseCode.Repeated:
-      exec(`echo ${data.images} | pbcopy`)
-      break
-    default:
-      break
+function getTokenFromLocal(): string | undefined {
+  try {
+    const { token } = JSON.parse(
+      readFileSync(TOKEN_PATH, { encoding: 'utf-8', flag: 'a+' })
+    )
+    return token
+  } catch (err) {
+    console.log('token does not exist, you can run "ui --help"')
   }
 }
-
-uploadImage()
