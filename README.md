@@ -1,7 +1,7 @@
 ## Installation
 
 ```
-npm install upload-image-from-clipboard
+npm i -g upload-image-from-clipboard
 ```
 
 ## Set SM.MS token
