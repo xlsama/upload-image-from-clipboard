@@ -7,7 +7,7 @@ import { SMMSUploadResponseCode } from './types'
 
 function getClipboardImagePath(): Promise<string> {
   return new Promise(resolve => {
-    const pngpasteCommand = path.resolve(__dirname, 'lib/pngpaste')
+    const pngpasteCommand = path.resolve('lib/pngpaste')
     const name = 'image.png'
 
     exec(`${pngpasteCommand} ${name}`, (...args) => {
