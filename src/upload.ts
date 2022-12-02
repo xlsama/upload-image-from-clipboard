@@ -4,7 +4,8 @@ import { uploadToSMMS } from './api'
 
 function getClipboardImagePath(): Promise<string> {
   return new Promise(resolve => {
-    const pngpasteCommand = path.resolve('lib/pngpaste')
+    const pngpasteCommand = path.resolve(__dirname, 'lib/pngpaste')
+
     const name = 'image.png'
 
     exec(`${pngpasteCommand} ${name}`, (...args) => {
@@ -14,7 +15,7 @@ function getClipboardImagePath(): Promise<string> {
         return
       }
 
-      resolve(path.resolve(name))
+      resolve(path.resolve(__dirname, '..', name))
     })
   })
 }
