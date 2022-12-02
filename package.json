@@ -23,7 +23,7 @@
   "homepage": "https://github.com/xlsama/upload-image-from-clipboard",
   "scripts": {
     "dev": "esno src/index.ts",
-    "build": "unbuild",
+    "build": "unbuild && cp -r src/lib dist",
     "release": "npm run build && npm publish"
   },
   "keywords": [
