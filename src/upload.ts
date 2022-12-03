@@ -3,7 +3,7 @@ import { exec } from 'node:child_process'
 import { uploadToSMMS } from './api'
 import { fileURLToPath } from 'node:url'
 
-const __dirname = fileURLToPath(import.meta.url)
+const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 function getClipboardImagePath(): Promise<string> {
   return new Promise(resolve => {
