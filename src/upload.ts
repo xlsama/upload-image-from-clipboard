@@ -9,16 +9,16 @@ function getClipboardImagePath(): Promise<string> {
   return new Promise(resolve => {
     const pngpasteCommand = path.resolve(__dirname, 'lib/pngpaste')
 
-    const name = 'image.png'
+    const imagePath = path.resolve(__dirname, 'image.png')
 
-    exec(`${pngpasteCommand} ${name}`, (...args) => {
+    exec(`${pngpasteCommand} ${imagePath}`, (...args) => {
       const stderr = args.at(-1)
       if (stderr) {
         console.log(stderr)
         return
       }
 
-      resolve(path.resolve(__dirname, '..', name))
+      resolve(imagePath)
     })
   })
 }
