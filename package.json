@@ -1,6 +1,6 @@
 {
   "name": "upload-image-from-clipboard",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Upload image from clipboard to SM.MS.",
   "license": "MIT",
   "author": "xlsama",
@@ -10,13 +10,13 @@
     "dist"
   ],
   "bin": {
-    "ui": "dist/index.mjs"
+    "ui": "dist/cli.mjs"
   },
   "repository": "xlsama/upload-image-from-clipboard",
   "homepage": "https://github.com/xlsama/upload-image-from-clipboard",
   "scripts": {
-    "dev": "esno src/index.ts",
-    "build": "unbuild && cp -r src/lib dist",
+    "dev": "esno src/cli.ts",
+    "build": "unbuild",
     "release": "npm run build && npm publish"
   },
   "keywords": [

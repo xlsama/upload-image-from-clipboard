@@ -1,7 +1,8 @@
 import path from 'node:path'
 import { exec } from 'node:child_process'
-import { uploadToSMMS } from './api'
 import { fileURLToPath } from 'node:url'
+import { uploadToSMMS } from './api'
+import { getTokenFromLocal } from './token'
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
@@ -11,19 +12,24 @@ function getClipboardImagePath(): Promise<string> {
 
     const imagePath = path.resolve(__dirname, 'image.png')
 
-    exec(`${pngpasteCommand} ${imagePath}`, (...args) => {
-      const stderr = args.at(-1)
-      if (stderr) {
-        console.log(stderr)
-        return
-      }
+    exec(`chmod +x ${pngpasteCommand}`, () => {
+      exec(`${pngpasteCommand} ${imagePath}`, (...args) => {
+        const stderr = args.at(-1)
+        if (stderr) {
+          console.log(stderr)
+          return
+        }
 
-      resolve(imagePath)
+        resolve(imagePath)
+      })
     })
   })
 }
 
-export async function uploadImage(token: string) {
+export async function uploadImage() {
+  const token = getTokenFromLocal()
+  if (!token) return
+
   const path = await getClipboardImagePath()
   const data = await uploadToSMMS({ path, token })
 
