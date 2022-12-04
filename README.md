@@ -33,7 +33,7 @@ ui
 ## Via JavaScript
 
 ```javascript
-import { uploadImage } from './dist/index.mjs'
+import { uploadImage } from 'upload-image-from-clipboard'
 
 uploadImage()
 ```
