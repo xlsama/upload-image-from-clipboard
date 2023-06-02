@@ -8,12 +8,12 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 
 function getClipboardImagePath(): Promise<string> {
   return new Promise(resolve => {
-    const pngpasteCommand = path.resolve(__dirname, 'lib/pngpaste')
+    const imgPasteCommand = path.resolve(__dirname, 'lib/img-paste')
 
     const imagePath = path.resolve(__dirname, 'image.png')
 
-    exec(`chmod +x ${pngpasteCommand}`, () => {
-      exec(`${pngpasteCommand} ${imagePath}`, (...args) => {
+    exec(`chmod +x ${imgPasteCommand}`, () => {
+      exec(`${imgPasteCommand} ${imagePath}`, (...args) => {
         const stderr = args.at(-1)
         if (stderr) {
           console.log(stderr)
