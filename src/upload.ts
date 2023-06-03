@@ -12,8 +12,8 @@ function getClipboardImagePath(): Promise<string> {
 
     const imagePath = path.resolve(__dirname, 'image.png')
 
-    exec(`chmod +x ${imgPasteCommand}`, () => {
-      exec(`${imgPasteCommand} ${imagePath}`, (...args) => {
+    exec(`chmod +x "${imgPasteCommand}"`, () => {
+      exec(`"${imgPasteCommand}" "${imagePath}"`, (...args) => {
         const stderr = args.at(-1)
         if (stderr) {
           console.log(stderr)

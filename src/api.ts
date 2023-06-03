@@ -15,7 +15,7 @@ export function uploadToSMMS({ path, token }: SMMSUploadRequest): Promise<SMMSUp
       body: form,
     })
 
-    exec(`rm ${path}`)
+    exec(`rm "${path}"`)
 
     const data = JSON.parse(res.body)
 
