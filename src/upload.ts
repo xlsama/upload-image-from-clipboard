@@ -38,7 +38,5 @@ export async function uploadImage() {
     return
   }
 
-  exec(`echo ${data.data.url} | pbcopy`, () =>
-    console.log('Copied to clipboard')
-  )
+  exec(`echo ${data.data.url} | pbcopy`, () => console.log('Copied to clipboard'))
 }

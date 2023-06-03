@@ -10,9 +10,7 @@ export function setTokenToLocal(token: string) {
 
 export function getTokenFromLocal(): string | undefined {
   try {
-    const { token } = JSON.parse(
-      readFileSync(TOKEN_PATH, { encoding: 'utf-8', flag: 'a+' })
-    )
+    const { token } = JSON.parse(readFileSync(TOKEN_PATH, { encoding: 'utf-8', flag: 'a+' }))
     return token
   } catch (err) {
     console.log('token does not exist, you can run "ui --help"')

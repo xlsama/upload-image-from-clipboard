@@ -4,19 +4,20 @@ export default defineBuildConfig({
   entries: [
     {
       input: './src/index',
-      outDir: './dist'
+      outDir: './dist',
     },
     {
       input: './src/cli',
-      outDir: './dist'
+      outDir: './dist',
     },
     {
       // mkdist builder transpiles file-to-file keeping original sources structure
       builder: 'mkdist',
       input: './src/lib',
-      outDir: './dist/shared/lib'
-    }
+      outDir: './dist/lib',
+    },
   ],
   outDir: 'dist',
-  declaration: true
+  declaration: true,
+  clean: true,
 })

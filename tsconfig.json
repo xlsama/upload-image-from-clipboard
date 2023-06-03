@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["ESNext"],
+    "target": "es2018",
+    "module": "esnext",
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
     "resolveJsonModule": true,
-    "outDir": "dist"
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   },
   "include": ["src"]
 }
