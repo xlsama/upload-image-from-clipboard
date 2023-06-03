@@ -1,7 +1,7 @@
 {
   "name": "upload-image-from-clipboard",
   "type": "module",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Upload image from clipboard to SM.MS.",
   "author": "xlsama",
   "license": "MIT",

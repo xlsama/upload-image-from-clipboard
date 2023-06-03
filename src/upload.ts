@@ -14,12 +14,11 @@ function getClipboardImagePath(): Promise<string> {
 
     exec(`chmod +x "${imgPasteCommand}"`, () => {
       exec(`"${imgPasteCommand}" "${imagePath}"`, (...args) => {
-        const stderr = args.at(-1)
+        const stderr = args.at(1)
         if (stderr) {
           console.log(stderr)
           return
         }
-
         resolve(imagePath)
       })
     })
