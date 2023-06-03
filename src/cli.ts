@@ -1,4 +1,4 @@
-#!/bin/env node
+#!/usr/bin/env node
 
 import { version } from '../package.json'
 import { program } from 'commander'
